@@ -1,3 +1,5 @@
+@use '../helpers.scss' as *;
+
 .panel {
   display: block;
   color: var(--color-black);

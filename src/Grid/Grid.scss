@@ -1,3 +1,5 @@
+@use '../helpers.scss' as *;
+
 .grid {
   @include mobile {
     padding: 0 2px 2px;
