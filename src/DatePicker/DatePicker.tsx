@@ -22,7 +22,7 @@ export type PossibleDateType = Date | Date[] | DateRange | undefined;
 export type DaySelectionMode = 'single' | 'multiple' | 'range' | 'default';
 
 interface NavigationSelectableProps {
-  captionLayout: 'dropdown' | 'buttons';
+  captionLayout: 'dropdown' | 'dropdown-months';
 }
 
 interface NavigationDisabledProps {
@@ -87,10 +87,6 @@ const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
       dateFormat = 'P',
       formatter,
       defaultMonth,
-      fromYear,
-      toYear,
-      fromDate,
-      toDate,
       selectionMode = 'single',
       navigation,
       onChange,
@@ -98,7 +94,7 @@ const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
     },
     ref,
   ) => {
-    const [value, setValue] = useState<PossibleDateType>(initialValue);
+    const [value, setValue] = useState<DateRange>();
     const [isOpenOnTop, setIsOpenOnTop] = useState(openSite === 'top');
     const [isActive, setIsActive] = useState(false);
     const [error, setError] = useState('');
@@ -120,7 +116,7 @@ const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
         case 'dropdown':
           return { captionLayout: 'dropdown' };
         case 'pagination':
-          return { captionLayout: 'buttons' };
+          return { captionLayout: 'dropdown-months' };
         default:
           return null;
       }
@@ -130,15 +126,15 @@ const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
     const formattedValue = useMemo(() => {
       if (!value) return '';
 
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       if (formatter) return formatter(value as any);
 
       try {
         if (value instanceof Date) return format(value, dateFormat as string);
-        if (Array.isArray(value)) return value.map((dateItem) => format(dateItem, dateFormat as string));
-        if (typeof value === 'object') {
-          const formattedFrom = value.from ? format(value.from, dateFormat as string) : '';
-          const formattedTo = value.to ? format(value.to, dateFormat as string) : '';
+        if (Array.isArray(value)) return (value as Date[]).map((dateItem) => format(dateItem, dateFormat as string));
+        if (typeof value === 'object' && value !== null && 'from' in value && 'to' in value) {
+          const dateRange = value as DateRange; // Aseguramos que TypeScript lo reconozca como DateRange
+          const formattedFrom = dateRange.from ? format(dateRange.from, dateFormat as string) : '';
+          const formattedTo = dateRange.to ? format(dateRange.to, dateFormat as string) : '';
 
           if (!formattedFrom && formattedTo) return '';
 
@@ -168,7 +164,7 @@ const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
       setIsActive(false);
     };
 
-    const handleSelectDate = (date: PossibleDateType) => {
+    const handleSelectDate = (date: DateRange) => {
       setValue(date);
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -196,7 +192,9 @@ const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
     }, []);
 
     useEffect(() => {
-      setValue(initialValue);
+      const date = new Date();
+
+      setValue({ from: date, to: date });
     }, [initialValue]);
 
     return (
@@ -222,10 +220,6 @@ const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
             onSelect={handleSelectDate}
             defaultMonth={defaultMonth}
             weekStartsOn={1}
-            fromYear={fromYear}
-            toYear={toYear}
-            fromDate={fromDate}
-            toDate={toDate}
             className={calendarClassNames}
             {...(navigationProps as NavigationProps)}
           />
