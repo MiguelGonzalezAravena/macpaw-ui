@@ -32,8 +32,8 @@
   },
   "peerDependencies": {
     "clsx": "^2.1.1",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "react-transition-group": "^4.4.5"
   },
   "devDependencies": {
@@ -61,13 +61,13 @@
     "@types/react-transition-group": "^4.4.12",
     "clsx": "^2.1.1",
     "deploy-aws-s3-cloudfront": "^3.7.0",
-    "eslint": "^9.21.0",
+    "eslint": "^8.57.1",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "next": "^15.1.7",
     "prism-react-renderer": "^2.4.1",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "sass": "^1.85.1",
     "typescript": "^5.7.3"
   },

@@ -1,6 +1,6 @@
 import React from 'react';
 import { MDXProvider } from '@mdx-js/react';
-import CodeBlock from '../CodeBlock/CodeBlock';
+import { CodeBlock } from '../CodeBlock/CodeBlock';
 import Navigation from '../Navigation/Navigation';
 import styles from './Layout.module.css';
 import MobileNavigation from '../MobileNavigation/MobileNavigation';
