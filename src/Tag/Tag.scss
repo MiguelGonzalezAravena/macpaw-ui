@@ -1,9 +1,9 @@
-$spectrum: 'warning', 'primary', 'secondary';
+$spectrum: warning, primary, secondary;
 
 $main-color-names: (
-  warning: '--color-error',
-  primary: '--color-primary',
-  secondary: '--color-secondary',
+  warning: var(--color-error),
+  primary: var(--color-primary),
+  secondary: var(--color-secondary),
 );
 
 $hover-colors: (

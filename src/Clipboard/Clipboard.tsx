@@ -13,7 +13,7 @@ const TIMEOUT = 1600;
 
 const Clipboard: React.FC<ClipboardProps> = ({ copy, element, onCopyEvent }) => {
   const [canBeCopied, setCanBeCopied] = useState(true);
-  const timerRef = useRef<NodeJS.Timeout>();
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     if (!canBeCopied) timerRef.current = setTimeout(() => setCanBeCopied(true), TIMEOUT);
