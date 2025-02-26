@@ -1,4 +1,4 @@
-import React, { FC, HTMLAttributes } from 'react';
+import React, { FC, HTMLAttributes, JSX } from 'react';
 import cx from 'clsx';
 import NextComponent from './NextComponent';
 import PrevComponent from './PrevComponent';

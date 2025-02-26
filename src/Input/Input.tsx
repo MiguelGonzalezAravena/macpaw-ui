@@ -57,7 +57,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   } = props;
 
   const isDirtyRef = useRef(false);
-  const inputRef = useRef<HTMLInputElement>();
+  const inputRef = useRef<HTMLInputElement>(undefined);
 
   const classNames = cx('input', {
     '-error': Boolean(error),

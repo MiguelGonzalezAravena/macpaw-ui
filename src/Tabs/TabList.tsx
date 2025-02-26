@@ -11,12 +11,12 @@ const TabList: React.FC<PropsWithChildren<TabListProps>> = ({ children, ...restP
   useEffect(() => {
     if (activeTab) return;
 
-    const [firstTab] = React.Children.toArray(children);
+    const [firstTab] = React.Children.toArray(children) as React.ReactElement[];
 
-    if (!React.isValidElement(firstTab) || firstTab.props.__TYPE !== DEFAULT_TAB_TYPE)
+    if (!React.isValidElement(firstTab) || (firstTab.props as any).__TYPE !== DEFAULT_TAB_TYPE)
       throw new Error('TabList must have only Tab component as a child.');
 
-    onSelectTab(firstTab.props.tab);
+    onSelectTab((firstTab.props as any).tab);
   }, [children, activeTab]);
 
   return (

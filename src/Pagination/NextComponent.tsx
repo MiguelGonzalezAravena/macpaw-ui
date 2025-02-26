@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, JSX } from 'react';
 import cx from 'clsx';
 import BackIcon from '../Icons/jsx/BackIcon';
 

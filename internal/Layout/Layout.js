@@ -1,24 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { MDXProvider } from '@mdx-js/react';
-import { CodeBlock } from '../CodeBlock/CodeBlock';
 import Navigation from '../Navigation/Navigation';
 import styles from './Layout.module.css';
 import MobileNavigation from '../MobileNavigation/MobileNavigation';
 
-const components = {
-  p: (props) => <p className={styles.paragraph} {...props} />,
-  pre: (props) => <div {...props} />,
-  code: CodeBlock,
-};
+const Layout = ({ children }) => {
+  const [mounted, setMounted] = useState(false);
 
-const Layout = ({ children }) => (
-  <div className={styles.layout}>
-    <MobileNavigation />
-    <Navigation />
-    <div className={styles.content}>
-      <MDXProvider components={components}>{children}</MDXProvider>
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null; // Evita errores de hidratación mostrando nada en SSR
+  }
+
+  return (
+    <div className={styles.layout}>
+      <MobileNavigation />
+      <Navigation />
+      <div className={styles.content}>
+        <MDXProvider>{children}</MDXProvider>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default Layout;

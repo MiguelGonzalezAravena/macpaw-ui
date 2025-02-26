@@ -4,7 +4,7 @@
   "main": "lib/ui.js",
   "scripts": {
     "dev": "next -p 1234",
-    "build": "next build && next export",
+    "build": "next build",
     "lint": "eslint src",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -28,7 +28,9 @@
     "lodash.isempty": "^4.4.0",
     "lodash.unionwith": "^4.6.0",
     "react-day-picker": "^9.5.1",
-    "react-toastify": "^11.0.5"
+    "react-toastify": "^11.0.5",
+    "rehype-highlight": "^7.0.2",
+    "rehype-prism": "^2.3.3"
   },
   "peerDependencies": {
     "clsx": "^2.1.1",

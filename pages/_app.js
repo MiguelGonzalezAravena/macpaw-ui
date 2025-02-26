@@ -1,3 +1,4 @@
+import { MDXProvider } from '@mdx-js/react';
 import Layout from '../internal/Layout/Layout';
 import '../src/ui.scss';
 

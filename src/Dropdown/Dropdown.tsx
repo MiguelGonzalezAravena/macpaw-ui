@@ -3,7 +3,7 @@ import cx from 'clsx';
 import debounce from 'lodash.debounce';
 
 export interface Dropdown extends HTMLAttributes<HTMLDivElement> {
-  trigger: React.ReactElement;
+  trigger: React.ReactElement<{ onClick?: () => void }>;
   position?: 'left' | 'center' | 'right';
   onOpen?: () => void;
   onClose?: () => void;

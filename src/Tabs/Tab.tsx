@@ -49,8 +49,10 @@ const Tab: React.FC<PropsWithChildren<TabProps>> = ({
   );
 };
 
+/*
 Tab.defaultProps = {
   __TYPE: DEFAULT_TAB_TYPE,
 };
+*/
 
 export default Tab;
