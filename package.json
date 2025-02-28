@@ -81,6 +81,6 @@
     "tsconfig.lib.json"
   ],
   "homepage": "https://ui.macpaw.com/",
-  "repository": "macpaw/macpaw-ui",
+  "repository": "MiguelGonzalezAravena/macpaw-ui",
   "license": "MIT"
 }
