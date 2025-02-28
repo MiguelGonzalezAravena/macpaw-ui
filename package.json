@@ -78,7 +78,8 @@
   },
   "files": [
     "src",
-    "lib"
+    "lib",
+    "tsconfig.lib.json"
   ],
   "homepage": "https://ui.macpaw.com/",
   "repository": "macpaw/macpaw-ui",
