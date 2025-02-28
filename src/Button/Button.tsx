@@ -1,6 +1,6 @@
 import React, { forwardRef, ReactNode, ElementType, ButtonHTMLAttributes } from 'react';
-import PawIcon from '@icons/PawIcon';
 import cx from 'clsx';
+import PawIcon from '../Icons/jsx/PawIcon';
 
 export type ButtonColor = 'primary' | 'secondary' | 'warning' | 'contrast' | 'transparent';
 
