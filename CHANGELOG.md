@@ -1,4 +1,4 @@
-# @mga/macpaw-ui
+# @mgadev/macpaw-ui
 
 ## 4.17.0
 
