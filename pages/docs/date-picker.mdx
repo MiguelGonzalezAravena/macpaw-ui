@@ -229,10 +229,13 @@ You able to format the date using format and dateFormat props.
 ```
 
 export const formatDate = (date) => {
-  const day = date.getDate();
-  const month = date.getMonth() + 1;
-  const year = date.getFullYear();
-  return `Day: ${day}, Month: ${month}, Year: ${year}`;
+  const d = new Date(date?.from || date?.to || date);
+  
+  if (isNaN(d.getTime())) {
+    return 'Invalid Date';
+  }
+
+  return `Day: ${d.getDate()}, Month: ${d.getMonth() + 1}, Year: ${d.getFullYear()}`;
 };
 
 <DatePicker
@@ -243,11 +246,14 @@ export const formatDate = (date) => {
 />
 
 ```
-const formatDate = (date) => {
-  const day = date.getDate();
-  const month = date.getMonth() + 1;
-  const year = date.getFullYear();
-  return `Day: ${day}, Month: ${month}, Year: ${year}`;
+export const formatDate = (date) => {
+  const d = new Date(date?.from || date?.to || date);
+  
+  if (isNaN(d.getTime())) {
+    return 'Invalid Date';
+  }
+
+  return `Day: ${d.getDate()}, Month: ${d.getMonth() + 1}, Year: ${d.getFullYear()}`;
 };
 
 <DatePicker
@@ -279,32 +285,17 @@ const formatDate = (date) => {
 <DatePicker
   label="Select date"
   placeholder="Select date"
-  fromYear={2018}
-  toYear={2020}
+  defaultMonth={new Date(2018, 0)}
+  startMonth={new Date(2018, 0)}
+  endMonth={new Date(2018, 3)}
 />
 
 ```
 <DatePicker
   label="Select date"
   placeholder="Select date"
-  fromYear={2018}
-  toYear={2020}
-/>
-```
-
-<DatePicker
-  label="Select date"
-  placeholder="Select date"
-  fromDate={new Date(2018, 0, 1)}
-  toDate={new Date(2020, 2, 14)}
-/>
-
-```
-<DatePicker
-  label="Select date"
-  placeholder="Select date"
-  fromDate={new Date(2018, 0, 1)}
-  toDate={new Date(2020, 2, 14)}
+  startMonth={new Date(2018, 0)}
+  endMonth={new Date(2020, 0)}
 />
 ```
 
@@ -332,13 +323,13 @@ This is the default mode.
 
 This mode allows to select a year and a month.
 
-**NOTE:** to use this mode you should provide ***fromYear*** and ***toYear*** props.
+**NOTE:** to use this mode you should provide ***startMonth*** and ***endMonth*** props.
 
 <DatePicker
   label="Select date"
   placeholder="Select date"
-  fromYear={2015}
-  toYear={2025} 
+  startMonth={new Date(2015, 0)}
+  endMonth={new Date(2025, 0)}
   navigation="dropdown"
 />
 
@@ -346,8 +337,8 @@ This mode allows to select a year and a month.
 <DatePicker
   label="Select date"
   placeholder="Select date"
-  fromYear={2015}
-  toYear={2025} 
+  startMonth={new Date(2015, 0)}
+  endMonth={new Date(2025, 0)}
   navigation="dropdown"
 />
 ```

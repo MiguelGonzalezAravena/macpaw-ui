@@ -23,6 +23,8 @@ export type DaySelectionMode = 'single' | 'multiple' | 'range' | 'default';
 
 interface NavigationSelectableProps {
   captionLayout: 'dropdown' | 'dropdown-months';
+  startMonth?: Date;
+  endMonth?: Date;
 }
 
 interface NavigationDisabledProps {
@@ -44,10 +46,8 @@ export interface DatePickerCommonProps extends Omit<InputHTMLAttributes<HTMLInpu
   closeOnSelect?: boolean;
   dateFormat?: string;
   defaultMonth?: Date;
-  fromYear?: number;
-  toYear?: number;
-  fromDate?: Date;
-  toDate?: Date;
+  startMonth?: Date;
+  endMonth?: Date;
   navigation?: 'pagination' | 'dropdown' | 'disabled';
 }
 
@@ -89,12 +89,25 @@ const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
       defaultMonth,
       selectionMode = 'single',
       navigation,
+      startMonth, // 🔥 Aseguramos que estas props no vayan a <Input>
+      endMonth,
       onChange,
       ...restProps
     },
     ref,
   ) => {
-    const [value, setValue] = useState<DateRange>();
+    const [value, setValue] = useState<PossibleDateType>(() => {
+      switch (selectionMode) {
+        case 'multiple':
+          return [] as Date[]; // Modo multiple requiere un array
+        case 'range':
+          return { from: undefined, to: undefined } as DateRange; // Modo range usa un objeto
+        case 'single':
+        default:
+          return undefined; // Modo single acepta un solo Date
+      }
+    });
+
     const [isOpenOnTop, setIsOpenOnTop] = useState(openSite === 'top');
     const [isActive, setIsActive] = useState(false);
     const [error, setError] = useState('');
@@ -164,10 +177,17 @@ const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
       setIsActive(false);
     };
 
-    const handleSelectDate = (date: DateRange) => {
-      setValue(date);
+    const handleSelectDate = (date: unknown) => {
+      if (selectionMode === 'multiple' && Array.isArray(date)) {
+        setValue(date as Date[]);
+      } else if (selectionMode === 'range' && typeof date === 'object' && date !== null) {
+        setValue(date as DateRange);
+      } else if (selectionMode === 'single' && date instanceof Date) {
+        setValue(date);
+      } else {
+        setValue(undefined); // Previene valores inválidos
+      }
 
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       onChange?.(date as any);
 
       if (closeOnSelect) handleClose();
@@ -194,7 +214,7 @@ const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
     useEffect(() => {
       const date = new Date();
 
-      setValue({ from: date, to: date });
+      setValue(date);
     }, [initialValue]);
 
     return (
@@ -210,15 +230,22 @@ const DatePicker = forwardRef<HTMLInputElement, DatePickerProps>(
           onChange={() => {}}
           onClick={handleInputClick}
           ref={ref}
-          {...restProps}
         />
         {isActive && (
           <DayPicker
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             mode={selectionMode as any}
-            selected={value}
+            selected={
+              selectionMode === 'multiple'
+                ? (Array.isArray(value) ? value : []) // Asegura que sea un array en modo multiple
+                : selectionMode === 'range'
+                ? (value as DateRange) || { from: undefined, to: undefined } // Asegura que sea un objeto en modo range
+                : (value as Date) || undefined // Asegura que sea un solo Date en modo single
+            }
             onSelect={handleSelectDate}
             defaultMonth={defaultMonth}
+            startMonth={startMonth}
+            endMonth={endMonth}
             weekStartsOn={1}
             className={calendarClassNames}
             {...(navigationProps as NavigationProps)}

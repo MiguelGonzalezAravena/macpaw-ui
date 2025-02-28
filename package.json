@@ -28,9 +28,11 @@
     "lodash.isempty": "^4.4.0",
     "lodash.unionwith": "^4.6.0",
     "react-day-picker": "^9.5.1",
+    "react-syntax-highlighter": "^15.6.1",
     "react-toastify": "^11.0.5",
     "rehype-highlight": "^7.0.2",
-    "rehype-prism": "^2.3.3"
+    "rehype-prism": "^2.3.3",
+    "rehype-prism-plus": "^2.0.0"
   },
   "peerDependencies": {
     "clsx": "^2.1.1",
