@@ -1,6 +1,6 @@
 {
-  "name": "@macpaw/macpaw-ui",
-  "version": "4.17.0",
+  "name": "@mga/macpaw-ui",
+  "version": "5.0.0",
   "main": "lib/ui.js",
   "scripts": {
     "dev": "next -p 1234",
@@ -14,7 +14,6 @@
     "lib:js": "tsc --project tsconfig.lib.json",
     "lib:css": "sass src/ui.scss lib/ui.css",
     "lib": "yarn lib:css && yarn lib:js",
-    "postinstall": "yarn install --check-files && yarn lib",
     "deploy:s3": "deploy-aws-s3-cloudfront --non-interactive --source=out --bucket=ui.macpaw.com --destination=/ --distribution=E2NQDOZEC6GH2E --acl **:public-read",
     "changes:release": "changeset tag",
     "changes:add": "changeset add"

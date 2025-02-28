@@ -5,19 +5,19 @@
 Install with npm:
 
 ```bash
-npm install --save @macpaw/macpaw-ui
+npm install --save @mga/macpaw-ui
 ```
 
 or with yarn:
 
 ```bash
-yarn add @macpaw/macpaw-ui
+yarn add @mga/macpaw-ui
 ```
 
 And import stylesheets manually:
 
 ```jsx
-import '@macpaw/macpaw-ui/lib/ui.css';
+import '@mga/macpaw-ui/lib/ui.css';
 ```
 
 ## Adding new Component
