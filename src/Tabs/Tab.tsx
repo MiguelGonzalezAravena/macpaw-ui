@@ -16,7 +16,7 @@ const Tab: React.FC<PropsWithChildren<TabProps>> = ({
   tab,
   className,
   activeClassName = '',
-  __TYPE,
+  __TYPE = DEFAULT_TAB_TYPE,
   ...restProps
 }) => {
   const { activeTab, onSelectTab, color, activeColor, scale } = useTabsContext();
@@ -49,10 +49,6 @@ const Tab: React.FC<PropsWithChildren<TabProps>> = ({
   );
 };
 
-/*
-Tab.defaultProps = {
-  __TYPE: DEFAULT_TAB_TYPE,
-};
-*/
+// Tab.defaultProps is not needed as default values are set in function parameters
 
 export default Tab;
