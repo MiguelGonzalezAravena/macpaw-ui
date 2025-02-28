@@ -18,8 +18,9 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "baseUrl": "./src",
     "paths": {
-      "@icons/*": ["./src/Icons/jsx/*"],
+      "@icons/*": ["Icons/jsx/*"],
     },
   },
   "include": [
