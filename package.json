@@ -12,7 +12,7 @@
     "icons:lint": "npx eslint src/Icons/jsx --fix",
     "icons": "yarn icons:convert && yarn run icons:lint",
     "lib:js": "tsc --project tsconfig.lib.json",
-    "lib:css": "sass src/ui.scss lib/ui.css",
+    "lib:css": "sass src/ui.scss lib/ui.css --no-source-map --load-path=node_modules",
     "lib": "yarn lib:css && yarn lib:js",
     "deploy:s3": "deploy-aws-s3-cloudfront --non-interactive --source=out --bucket=ui.macpaw.com --destination=/ --distribution=E2NQDOZEC6GH2E --acl **:public-read",
     "changes:add": "changeset add",
