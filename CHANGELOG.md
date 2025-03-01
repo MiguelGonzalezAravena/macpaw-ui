@@ -1,5 +1,16 @@
 # @mgadev/macpaw-ui
 
+## 6.1.0
+
+### Minor Changes
+
+- Update package publish access
+
+### Patch Changes
+
+- Update dependency path
+- Update dependency name
+
 ## 6.0.0
 
 ### Major Changes
