@@ -4,6 +4,7 @@ import Button from '../Button/Button';
 import BlockIcon from '../Icons/jsx/BlockIcon';
 import CheckIcon from '../Icons/jsx/CheckIcon';
 import CloseIcon from '../Icons/jsx/CloseIcon';
+import 'react-toastify/dist/ReactToastify.css';
 
 type NotificationType = 'success' | 'error';
 
