@@ -1,5 +1,11 @@
 # @mgadev/macpaw-ui
 
+## 6.1.1
+
+### Patch Changes
+
+- d4d9f29: Fix dependency import path
+
 ## 6.1.0
 
 ### Minor Changes
