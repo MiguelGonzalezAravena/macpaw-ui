@@ -15,8 +15,10 @@
     "lib:css": "sass src/ui.scss lib/ui.css",
     "lib": "yarn lib:css && yarn lib:js",
     "deploy:s3": "deploy-aws-s3-cloudfront --non-interactive --source=out --bucket=ui.macpaw.com --destination=/ --distribution=E2NQDOZEC6GH2E --acl **:public-read",
+    "changes:add": "changeset add",
+    "changes:version": "changeset version",
     "changes:release": "changeset tag",
-    "changes:add": "changeset add"
+    "changes:publish": "changeset publish"
   },
   "engines": {
     "node": ">= 20"
@@ -82,5 +84,8 @@
   ],
   "homepage": "https://ui.macpaw.com/",
   "repository": "MiguelGonzalezAravena/macpaw-ui",
-  "license": "MIT"
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  }
 }
