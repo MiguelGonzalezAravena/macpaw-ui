@@ -1,5 +1,11 @@
 # @mgadev/macpaw-ui
 
+## 6.1.2
+
+### Patch Changes
+
+- Add prepublishOnly script
+
 ## 6.1.1
 
 ### Patch Changes
