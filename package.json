@@ -15,6 +15,7 @@
     "lib:css": "sass src/ui.scss lib/ui.css --no-source-map --load-path=node_modules",
     "lib": "yarn lib:css && yarn lib:js",
     "deploy:s3": "deploy-aws-s3-cloudfront --non-interactive --source=out --bucket=ui.macpaw.com --destination=/ --distribution=E2NQDOZEC6GH2E --acl **:public-read",
+    "prepublishOnly": "yarn lib",
     "changes:add": "changeset add",
     "changes:version": "changeset version",
     "changes:release": "changeset tag",
@@ -34,7 +35,8 @@
     "react-toastify": "^11.0.5",
     "rehype-highlight": "^7.0.2",
     "rehype-prism": "^2.3.3",
-    "rehype-prism-plus": "^2.0.0"
+    "rehype-prism-plus": "^2.0.0",
+    "yarn": "^1.22.22"
   },
   "peerDependencies": {
     "clsx": "^2.1.1",
