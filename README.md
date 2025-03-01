@@ -53,6 +53,7 @@ Whenever you introduce a new change, run the command:
 
 ```bash
 npm run changes:add
+npm run changes:version
 git add . && git commit -m "chore: update changesets"
 git push
 ```
