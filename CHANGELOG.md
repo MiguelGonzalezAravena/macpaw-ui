@@ -36,6 +36,12 @@
 - bump React from 18 to 19
 - f4e21d8: bump Next.js from 13 to 15
 
+## 4.18.0
+
+### Minor Changes
+
+- 914d300: Added new pyament methods
+
 ## 4.17.0
 
 ### Minor Changes
