@@ -1,5 +1,11 @@
 # @mgadev/macpaw-ui
 
+## 6.3.0
+
+### Minor Changes
+
+- Synchronize from parent repository
+
 ## 6.1.3
 
 ### Patch Changes
